@@ -18,7 +18,7 @@ export const usersSlice = createSlice({
       state.isEmailError = false;
       state.isPasswordError = false;
 
-      if (state.list.some((us) => us.login === action.payload.login)) {
+      if (state.list.some((us) => us.name === action.payload.name)) {
         state.isLoginError = true;
         return;
       } else if (!action.payload.email.includes("@")) {
@@ -36,13 +36,20 @@ export const usersSlice = createSlice({
       state.isPasswordError = false;
     },
     verificate: (state, action) => {
-      state.list.map((user) => {
-        if (user.name === action.payload.name) {
-          if (!(user.password === action.payload.password)) return;
-          state.isLogin = true;
-          console.log("succesful")
-        }
-      });
+      const user = state.list.find((u) => u.name === action.payload.name);
+
+      if (user.password !== action.payload.password) {
+        console.log("password incorrect");
+        return;
+      }
+
+      if (!user) {
+        state.isLoginError = true;
+        return;
+      }
+
+      state.isLogin = true;
+      console.log("succesful");
     },
   },
 });

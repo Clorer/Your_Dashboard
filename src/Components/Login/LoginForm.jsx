@@ -34,10 +34,20 @@ export default function LoginForm() {
   ];
 
   useEffect(() => {
-    if (isLogin) navigate("/dashboard")
-  }, [isLogin])
+    if (isLogin) navigate("/dashboard");
+  }, [isLogin]);
+
+  const hundleSubmit = () => {
+    nameState != "" && passwordState != ""
+      ? dispatch(verificate({ name: nameState, password: passwordState }))
+      : null;
+  };
+
   return (
-    <form autoComplete="off" className="border border-gray-400 rounded-xl w-[33vw] shadow-2xl py-8 px-6">
+    <form
+      autoComplete="off"
+      className="border border-gray-400 rounded-xl w-[33vw] shadow-2xl py-8 px-6"
+    >
       <h1 className="text-2xl">Welcome!</h1>
       <h1 className="text-4xl mt-6">Log in</h1>
       <h1 className="">to Your Dashboard</h1>
@@ -58,11 +68,7 @@ export default function LoginForm() {
       <button
         type="button"
         className="border h-[4rem] rounded-md w-full p-auto bg-black text-white mt-8 hover:bg-gray-800 active:bg-gray-700 "
-        onClick={() => {
-          nameState != "" && passwordState != ""
-            ? dispatch(verificate({ name: nameState, password: passwordState }))
-            : null;
-        }}
+        onClick={hundleSubmit}
       >
         Log In
       </button>
