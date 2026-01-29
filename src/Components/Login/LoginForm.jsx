@@ -8,8 +8,8 @@ import { verificate } from "../../store/Users/users.slice";
 export default function LoginForm() {
   const [nameState, setNameState] = useState("");
   const [passwordState, setPasswordState] = useState("");
-  const isLoginError = useSelector((state) => state.users.isLoginError);
-  const isPasswordError = useSelector((state) => state.users.isPasswordError);
+  const isLoginError = useSelector((state) => state.users.errors.isLoginError);
+  const isPasswordError = useSelector((state) => state.users.errors.isPasswordError);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.users.currentUser);
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ export default function LoginForm() {
   return (
     <form
       autoComplete="off"
-      className="border border-gray-400 rounded-xl w-[33vw] shadow-2xl py-8 px-6"
+      className="border border-gray-600 rounded-xl w-[33vw] shadow-2xl py-8 px-6"
     >
       <h1 className="text-2xl">Welcome!</h1>
       <h1 className="text-4xl mt-6">Log in</h1>
@@ -64,7 +64,7 @@ export default function LoginForm() {
           <input type="checkbox" name="rememberMe" />
           <p>Remember me</p>
         </div>
-        <p className="text-gray-400 hover:text-gray-300 active:text-gray-200">
+        <p className="text-gray-700 hover:text-gray-500 active:text-gray-400">
           Forgot your password?
         </p>
       </div>
@@ -76,7 +76,7 @@ export default function LoginForm() {
         Log In
       </button>
       <div className="flex gap-3 w-full justify-center mt-4">
-        <p className="text-gray-400">Don’y have an Account?</p>{" "}
+        <p className="text-gray-700">Don’t have an Account?</p>{" "}
         <Link to="/register" className="font-bold hover:text-gray-500">
           Create
         </Link>

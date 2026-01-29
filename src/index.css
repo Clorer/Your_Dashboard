@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 body{
-  padding-top: 1rem;
-  padding-left: 2rem;
+  min-height: 100vh;
+  padding-top: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  background: linear-gradient(to bottom right, rgba(225, 223, 223, 0.75), 75%, rgba(255, 195, 75, 0.75)) no-repeat;
+  background-size: 100%;
 }

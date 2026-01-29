@@ -3,18 +3,19 @@ import { USERS_DATA } from "../../USERS_DATA";
 
 const initialState = {
   list: USERS_DATA,
-  isLoginError: false,
-  isEmailError: false,
-  isPasswordError: false,
   isLogin: false,
   currentUser: null,
+  errors: {
+    isLoginError: false,
+    isEmailError: false,
+    isPasswordError: false,
+  },
 };
 
 export const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-
     addUser: (state, action) => {
       state.isLoginError = false;
       state.isEmailError = false;
@@ -58,8 +59,8 @@ export const usersSlice = createSlice({
     },
 
     logout: (state) => {
-        state.currentUser = null;
-    }
+      state.currentUser = null;
+    },
   },
 });
 

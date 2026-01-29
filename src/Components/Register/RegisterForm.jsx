@@ -9,9 +9,9 @@ export default function RegisterForm() {
   const [nameState, setNameState] = useState("");
   const [passwordState, setPasswordState] = useState("");
   const [mailState, setMailState] = useState("");
-  const isLoginError = useSelector((state) => state.users.isLoginError);
-  const isEmailError = useSelector((state) => state.users.isEmailError);
-  const isPasswordError = useSelector((state) => state.users.isPasswordError);
+  const isLoginError = useSelector((state) => state.users.errors.isLoginError);
+  const isEmailError = useSelector((state) => state.users.errors.isEmailError);
+  const isPasswordError = useSelector((state) => state.users.errors.isPasswordError);
   const dispatch = useDispatch();
 
   const fields = [
@@ -56,7 +56,7 @@ export default function RegisterForm() {
   return (
     <form
       autoComplete="off"
-      className="border border-gray-400 rounded-xl w-[33vw] shadow-2xl py-8 px-6"
+      className="border border-gray-600 rounded-xl w-[33vw] shadow-2xl py-8 px-6"
     >
       <h1 className="text-2xl">Welcome!</h1>
       <h1 className="text-4xl mt-6">Sign in</h1>
