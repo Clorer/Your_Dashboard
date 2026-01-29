@@ -7,12 +7,14 @@ const initialState = {
   isEmailError: false,
   isPasswordError: false,
   isLogin: false,
+  currentUser: null,
 };
 
 export const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
+
     addUser: (state, action) => {
       state.isLoginError = false;
       state.isEmailError = false;
@@ -30,11 +32,13 @@ export const usersSlice = createSlice({
       }
       state.list.push(action.payload);
     },
+
     clearErrors: (state) => {
       state.isLoginError = false;
       state.isEmailError = false;
       state.isPasswordError = false;
     },
+
     verificate: (state, action) => {
       const user = state.list.find((u) => u.name === action.payload.name);
 
@@ -49,10 +53,15 @@ export const usersSlice = createSlice({
       }
 
       state.isLogin = true;
+      state.currentUser = user;
       console.log("succesful");
     },
+
+    logout: (state) => {
+        state.currentUser = null;
+    }
   },
 });
 
-export const { addUser, clearErrors, verificate } = usersSlice.actions;
+export const { addUser, clearErrors, verificate, logout } = usersSlice.actions;
 export default usersSlice.reducer;

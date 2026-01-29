@@ -11,7 +11,7 @@ export default function LoginForm() {
   const isLoginError = useSelector((state) => state.users.isLoginError);
   const isPasswordError = useSelector((state) => state.users.isPasswordError);
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.users.isLogin);
+  const currentUser = useSelector((state) => state.users.currentUser);
   const navigate = useNavigate();
 
   const fields = [
@@ -34,8 +34,11 @@ export default function LoginForm() {
   ];
 
   useEffect(() => {
-    if (isLogin) navigate("/dashboard");
-  }, [isLogin]);
+    if (currentUser) {
+      navigate("/dashboard");
+      console.log(currentUser);
+    }
+  }, [currentUser]);
 
   const hundleSubmit = () => {
     nameState != "" && passwordState != ""

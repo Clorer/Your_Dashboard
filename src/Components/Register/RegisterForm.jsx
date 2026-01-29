@@ -52,7 +52,7 @@ export default function RegisterForm() {
         )
       : null;
   };
-  
+
   return (
     <form
       autoComplete="off"
