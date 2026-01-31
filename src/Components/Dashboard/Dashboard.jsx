@@ -9,30 +9,23 @@ import Welcome from "./Welcome";
 import ProfileTile from "./Tiles/ProfileTile";
 import TimerTile from "./Tiles/TimerTile";
 import GoalsTile from "./Tiles/GoalsTile";
+import WeatherTile from "./Tiles/WeatherTile";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.users.currentUser);
 
-  //   useEffect(() => {
-  //     if (!currentUser) {
-  //       navigate("/login");
-  //       console.log(currentUser);
-  //     }
-  //   }, [currentUser]);
+  useEffect(() => {
+    if (!currentUser) {
+      navigate("/login");
+    }
+  }, [currentUser]);
 
-  //   function handleClick() {
-  //     dispatch(logout());
-  //   }
-
-  return (
+  return currentUser ? (
     <>
       <header className="flex justify-between">
         <Logo />
-        {/* <button className="border rounded-xl shadow-2xl px-2" onClick={handleClick}>
-          Log out
-        </button> */}
         <NavBar />
       </header>
       <Welcome />
@@ -41,13 +34,13 @@ export default function Dashboard() {
         <GoalsTile />
         <TimerTile />
         <div className="row-span-2">
-            <GoalsTile />
+          <GoalsTile />
         </div>
-        <GoalsTile />
+        <WeatherTile />
         <div className="col-span-2">
-            <GoalsTile />
+          <GoalsTile />
         </div>
       </section>
     </>
-  );
+  ) : null;
 }
