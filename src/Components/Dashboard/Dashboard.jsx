@@ -1,8 +1,6 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../store/Users/users.slice";
 import Logo from "../Logo";
 import NavBar from "./NavBar/NavBar";
 import Welcome from "./Welcome";
@@ -10,17 +8,20 @@ import ProfileTile from "./Tiles/ProfileTile";
 import TimerTile from "./Tiles/TimerTile";
 import GoalsTile from "./Tiles/GoalsTile";
 import WeatherTile from "./Tiles/WeatherTile";
+import ProfileModalWindow from "./ProfileModalWindow/ProfileModalWindow";
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.users.currentUser);
+  const modalState = useSelector(state => state.modal)
+  const currentUser = useSelector((state) => state.users.currentUser)
 
   useEffect(() => {
     if (!currentUser) {
       navigate("/login");
     }
   }, [currentUser]);
+
+  useEffect
 
   return currentUser ? (
     <>
@@ -29,6 +30,7 @@ export default function Dashboard() {
         <NavBar />
       </header>
       <Welcome />
+      {modalState ? <ProfileModalWindow /> : null}
       <section className="grid grid-cols-4 grid-rows-2 gap-2 mt-8">
         <ProfileTile />
         <GoalsTile />

@@ -32,7 +32,7 @@ export default function WeatherTile() {
     <div className="bg-white/40 rounded-4xl w-full h-full pt-4 pb-8 px-4 flex justify-between flex-col">
       <div className="flex justify-between items-center">
         <div>
-          <p className="text-4xl">Moscow</p>
+          <p className="text-4xl">{user?.city || "Moscow"}</p>
           <p className="text-xl text-gray-400">
             {weatherData.weather[0].description}
           </p>
