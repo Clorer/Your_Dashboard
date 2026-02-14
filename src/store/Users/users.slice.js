@@ -162,7 +162,15 @@ export const usersSlice = createSlice({
       if (!state.currentUser.meetings) state.currentUser.meetings = []
 
       state.currentUser.meetings.push(action.payload)
-    }
+      saveCurrentLoginToStorage(state.currentUser);
+    },
+
+    deleteMeeting: (state, action) => {
+      if (!state.currentUser) return;
+
+      state.currentUser.meetings.splice(action.payload);
+      saveCurrentLoginToStorage(state.currentUser);
+    },
   },
 });
 
@@ -177,5 +185,6 @@ export const {
   deleteTask,
   addWorkDays,
   addMeeting,
+  deleteMeeting,
 } = usersSlice.actions;
 export default usersSlice.reducer;

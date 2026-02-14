@@ -9,11 +9,13 @@ import Tiles from "./Tabs/Tiles/Tiles";
 import Goals from "./Tabs/Goals/Goals";
 import AddTaskModal from "./Tabs/Goals/AddTaskModal";
 import Calendar from "./Tabs/Calendar/Calendar";
+import AddMeetingModal from "./Tabs/Calendar/addMeetingModal";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const modalState = useSelector((state) => state.modal);
   const taskModalState = useSelector((state) => state.taskModal.modalState)
+  const meetingModalState = useSelector((state) => state.meetingModal.modalState)
   const currentUser = useSelector((state) => state.users.currentUser);
   const activeTab = useSelector((state) => state.slidebar.activeTab);
 
@@ -34,7 +36,7 @@ export default function Dashboard() {
         <Logo />
         <NavBar />
       </header>
-      {(modalState && <ProfileModalWindow />) || (taskModalState && <AddTaskModal />)}
+      {(modalState && <ProfileModalWindow />) || (taskModalState && <AddTaskModal />) || (meetingModalState && <AddMeetingModal />)} 
       {Tabs[activeTab] || null}
     </div>
   ) : null;

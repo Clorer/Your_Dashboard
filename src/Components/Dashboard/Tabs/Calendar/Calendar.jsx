@@ -7,6 +7,7 @@ export default function Calendar() {
   const [isEditSchedule, setIsEditSchedule] = useState(false);
 
   const tasks = useSelector((state) => state.users.currentUser.tasks);
+  const meets = useSelector((state) => state.users.currentUser.meetings);
   const nowDate = new Date();
   const currentMonth = nowDate.getMonth();
   const currentYear = nowDate.getFullYear();
@@ -78,6 +79,9 @@ export default function Calendar() {
                 isEdit={isEditSchedule}
                 tasksInThisDay={tasks.filter(
                   (task) => new Date(task.date).getDate() === el.day,
+                )}
+                meetInThisDay={meets.filter(
+                  (meet) => new Date(meet.date).getDate() === el.day,
                 )}
               />
             ))}
