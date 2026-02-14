@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import UserPhoto from "../../../assets/empty-avatar.png";
+import UserPhoto from "../../../../assets/empty-avatar.png";
 export default function ProfileTile() {
   const user = useSelector((state) => state.users.currentUser);
   return (
     <div
-      className="flex flex-col-reverse overflow-hidden text-white w-full h-full rounded-4xl bg-cover bg-center"
+      className="min-h-80 flex flex-col-reverse overflow-hidden text-white w-full h-full rounded-4xl bg-cover bg-center"
       style={{ backgroundImage: `url(${user.photo || UserPhoto})` }}
     >
       <div className="bg-gradient-to-t from-black/70 to-transparent backdrop-blur-md w-full grid grid-cols-3 grid-rows-2 h-[30%] pb-4">

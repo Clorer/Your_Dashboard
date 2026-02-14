@@ -1,17 +1,19 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { switchActiveTab } from "../../../store/Slidebar/slidebar.slice";
 
-const sections = ["Dashboard", "Salary", "Calendar", "Goals"];
+const sections = ["Dashboard", "Salary", "Calendar", "Tasks"];
 
 export default function SlideBar() {
-  const [active, setActive] = useState("Dashboard");
-
+ const active = useSelector(state => state.slidebar.activeTab)
+ const dispatch = useDispatch();
   return (
     <div className="relative flex bg-[#fafafaac] rounded-4xl p-1 h-fit">
       {sections.map((sect) => (
         <button
           key={sect}
-          onClick={() => setActive(sect)}
+          onClick={() => dispatch(switchActiveTab(sect))}
           className="relative z-10 px-4 py-4 rounded-4xl"
         >
           {active === sect && (
@@ -21,6 +23,8 @@ export default function SlideBar() {
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
             />
           )}
+
+
 
           <span
             className={`relative ${

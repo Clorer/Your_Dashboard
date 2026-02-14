@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import Arrow from "../../../assets/icons/arrow-up-right.svg";
-import TimerPauseSVG from "../../../assets/icons/timer-pause.svg";
-import TimerPauseActiveSVG from "../../../assets/icons/timer-pause-active.svg";
-import TimerStartSVG from "../../../assets/icons/timer-start.svg";
-import TimerStartActiveSVG from "../../../assets/icons/timer-start-active.svg";
-import TimerResetSVG from "../../../assets/icons/timer-reset.svg";
+import Arrow from "../../../../assets/icons/arrow-up-right.svg";
+import TimerPauseSVG from "../../../../assets/icons/timer-pause.svg";
+import TimerPauseActiveSVG from "../../../../assets/icons/timer-pause-active.svg";
+import TimerStartSVG from "../../../../assets/icons/timer-start.svg";
+import TimerStartActiveSVG from "../../../../assets/icons/timer-start-active.svg";
+import TimerResetSVG from "../../../../assets/icons/timer-reset.svg";
 
 export default function TimerTile() {
   const [hours, setHours] = useState(0);

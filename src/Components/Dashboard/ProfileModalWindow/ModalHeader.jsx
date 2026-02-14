@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import UserPhoto from "../../../assets/empty-avatar.png";
 import CloseIcon from "../../../assets/icons/close.svg";
 import { useDispatch } from "react-redux";
-import { changeModalState } from "../../../store/Modal Window/modalWindow.slice";
+import { changeModalState } from "../../../store/ModalWindow/Profile/modalWindow.slice";
 import { useState } from "react";
 import { changeAvatar } from "../../../store/Users/users.slice";
 

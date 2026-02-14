@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { WEATHER_KEY } from "../../../API";
+import { WEATHER_KEY } from "../../../../API";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 export default function WeatherTile() {
@@ -18,7 +18,6 @@ export default function WeatherTile() {
     try {
       const result = await request();
       setWeatherData(result);
-      console.log(result);
     } catch (err) {
       console.log("Error: ", err);
     }

@@ -74,7 +74,7 @@ export const usersSlice = createSlice({
 
       // Синхронизация currentUser с list
       state.list = state.list.map((u) =>
-        u.name === user.name ? state.currentUser : u
+        u.name === user.name ? state.currentUser : u,
       );
 
       // Сохраняем в localStorage
@@ -93,7 +93,7 @@ export const usersSlice = createSlice({
       };
 
       state.list = state.list.map((user) =>
-        user.name === state.currentUser.name ? state.currentUser : user
+        user.name === state.currentUser.name ? state.currentUser : user,
       );
 
       saveUsersToStorage(state.list);
@@ -106,7 +106,7 @@ export const usersSlice = createSlice({
       state.currentUser = { ...state.currentUser, photo: action.payload };
 
       state.list = state.list.map((user) =>
-        user.name === state.currentUser.name ? state.currentUser : user
+        user.name === state.currentUser.name ? state.currentUser : user,
       );
 
       saveUsersToStorage(state.list);
@@ -117,6 +117,52 @@ export const usersSlice = createSlice({
       state.currentUser = null;
       saveCurrentLoginToStorage(null);
     },
+
+    addTask: (state, action) => {
+      if (!state.currentUser) return;
+
+      if (!state.currentUser.tasks) {
+        state.currentUser.tasks = [];
+      }
+
+      state.currentUser.tasks.push(action.payload);
+      saveCurrentLoginToStorage(state.currentUser);
+    },
+
+    deleteTask: (state, action) => {
+      if (!state.currentUser) return;
+
+      state.currentUser.tasks.splice(action.payload);
+      saveCurrentLoginToStorage(state.currentUser);
+    },
+
+    addWorkDays: (state, action) => {
+      if (!state.currentUser) return;
+
+      if (!state.currentUser.workDays) {
+        state.currentUser.workDays = [];
+      }
+
+      const exists = state.currentUser.workDays.some(
+        (el) => el === action.payload,
+      );
+
+      if (!exists) {
+        state.currentUser.workDays.push(action.payload);
+      } else {
+        // Вместо splice используйте filter
+        state.currentUser.workDays = state.currentUser.workDays.filter(
+          (el) => el !== action.payload,
+        );
+      }
+
+      saveCurrentLoginToStorage(state.currentUser);
+    },
+    addMeeting: (state, action) => {
+      if (!state.currentUser.meetings) state.currentUser.meetings = []
+
+      state.currentUser.meetings.push(action.payload)
+    }
   },
 });
 
@@ -127,5 +173,9 @@ export const {
   logout,
   changeUserData,
   changeAvatar,
+  addTask,
+  deleteTask,
+  addWorkDays,
+  addMeeting,
 } = usersSlice.actions;
 export default usersSlice.reducer;

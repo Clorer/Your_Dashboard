@@ -4,45 +4,38 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../Logo";
 import NavBar from "./NavBar/NavBar";
 import Welcome from "./Welcome";
-import ProfileTile from "./Tiles/ProfileTile";
-import TimerTile from "./Tiles/TimerTile";
-import GoalsTile from "./Tiles/GoalsTile";
-import WeatherTile from "./Tiles/WeatherTile";
 import ProfileModalWindow from "./ProfileModalWindow/ProfileModalWindow";
+import Tiles from "./Tabs/Tiles/Tiles";
+import Goals from "./Tabs/Goals/Goals";
+import AddTaskModal from "./Tabs/Goals/AddTaskModal";
+import Calendar from "./Tabs/Calendar/Calendar";
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const modalState = useSelector(state => state.modal)
-  const currentUser = useSelector((state) => state.users.currentUser)
+  const modalState = useSelector((state) => state.modal);
+  const taskModalState = useSelector((state) => state.taskModal.modalState)
+  const currentUser = useSelector((state) => state.users.currentUser);
+  const activeTab = useSelector((state) => state.slidebar.activeTab);
 
   useEffect(() => {
-    if (!currentUser) {
-      navigate("/login");
-    }
-  }, [currentUser]);
+    if (!currentUser) navigate("/login");
+  }, [currentUser, navigate]);
 
-  useEffect
+  const Tabs = {
+    Dashboard: <Tiles />,
+    Salary: <div>Salary</div>,
+    Calendar: <Calendar />,
+    Tasks: <Goals />,
+  };
 
   return currentUser ? (
-    <>
+    <div className="pb-4">
       <header className="flex justify-between">
         <Logo />
         <NavBar />
       </header>
-      <Welcome />
-      {modalState ? <ProfileModalWindow /> : null}
-      <section className="grid grid-cols-4 grid-rows-2 gap-2 mt-8">
-        <ProfileTile />
-        <GoalsTile />
-        <TimerTile />
-        <div className="row-span-2">
-          <GoalsTile />
-        </div>
-        <WeatherTile />
-        <div className="col-span-2">
-          <GoalsTile />
-        </div>
-      </section>
-    </>
+      {(modalState && <ProfileModalWindow />) || (taskModalState && <AddTaskModal />)}
+      {Tabs[activeTab] || null}
+    </div>
   ) : null;
 }

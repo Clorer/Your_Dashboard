@@ -5,7 +5,7 @@ import { changeUserData, logout } from "../../../store/Users/users.slice";
 import {
   changeModalState,
   closeModal,
-} from "../../../store/Modal Window/modalWindow.slice";
+} from "../../../store/ModalWindow/Profile/modalWindow.slice";
 
 export default function ModalForm() {
   const currentUser = useSelector((state) => state.users.currentUser);

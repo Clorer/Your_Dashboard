@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import ProfileLogo from "../../../assets/icons/user-profile.svg";
 import { useSelector } from "react-redux";
-import { changeModalState } from "../../../store/Modal Window/modalWindow.slice";
+import { changeModalState } from "../../../store/ModalWindow/Profile/modalWindow.slice";
 import { useEffect } from "react";
 
 export default function ProfileButton() {
@@ -9,7 +9,6 @@ export default function ProfileButton() {
   const modalState = useSelector((state) => state.modal);
 
   useEffect(() => {
-    console.log(modalState);
   }, [modalState]);
 
   return (
